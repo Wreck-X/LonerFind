@@ -2,6 +2,7 @@ import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import React, {useEffect, useState} from "react";
+
 function Map() {
     const [location, setLocation] = useState({ lat: 0, lng: 0 });
 
@@ -14,11 +15,11 @@ function Map() {
     });
   }, []);
   return (
-    <MapContainer center={[location.lat, location.lng]} zoom={13} maxZoom={20} scrollWheelZoom={true} style={{ height: '150vh'}}>
+    <MapContainer center={[51.505, -0.09]} zoom={13} minZoom={3} scrollWheelZoom={true} style={{ height: '150vh'}}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Marker position={[location.lat, location.lng]}>
         <Popup>
-          {/* <iconPerson/> */}
+          <iconPerson/>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
