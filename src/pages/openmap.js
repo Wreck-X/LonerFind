@@ -3,7 +3,6 @@ import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import React, {useEffect, useState} from "react";
 import L from 'leaflet';
-
 function Map() {
     const [location, setLocation] = useState({ lat: 0, lng: 0 });
 
