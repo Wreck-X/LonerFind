@@ -1,0 +1,121 @@
+.App {
+}
+
+.animation, .animation_layer {
+	height: 100%;
+	width: 100%;
+	
+}
+
+.animation {
+  display: block;
+	position: relative;
+	z-index: 10;
+background-color: #0c0d1f;
+}
+
+.animation_layer {
+	background-position: bottom center;
+	width: 100%;
+	position: absolute;
+}
+.animation_layer.parallax {
+	position: fixed;
+}
+
+#back {
+	background-image: url(./Images/back.png);
+
+  }
+#three{
+  background-image: url('./Images/3rdlayer.png');
+}
+#two{
+  background-image: url('./Images/2ndlayer.png');
+}
+#one {
+
+  background-image: url('./Images/1stlayer.png');
+}
+
+#secpage {
+	background-color: #0c0d1f;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.Test {
+	background-color: #191B40	;
+	height: 50rem;
+	width: 80rem;
+	opacity: 0.5;
+	border-radius: 20px;		
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+}
+.Test #butdiv {
+	margin: 0 auto;
+	height: auto;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+}
+
+.Test .para1 #paratext{
+	justify-content: center;
+	padding-left: 10%;
+	padding-right: 10%;
+	font-size: 30px;
+}
+
+.Test .Heading {
+	padding-top:5%;
+	font-size: 50px;
+}
+
+
+.Test .carddiv {
+	margin-top: 1em;
+	height: 23rem;
+	width: 40rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.Test .carddiv #card1 {
+	background-color: #384e7c;																	
+	height: 98%;
+	width: 40%;		
+	margin-right: 20px;
+	border-radius: 20px;
+}
+
+
+#card2 {
+	background-color: #384e7c;	
+	height: 98%;
+	width: 40%;
+	border-radius: 20px;
+}
+.button1 {
+	background-color: #4c74af; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	border-radius: 20px;
+  }
+
+.tryhead {
+	font-size: 25px;
+	margin-bottom: 10px;
+}
