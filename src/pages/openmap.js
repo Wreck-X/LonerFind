@@ -2,6 +2,7 @@ import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import React, {useEffect, useState} from "react";
+import L from 'leaflet';
 
 function Map() {
     const [location, setLocation] = useState({ lat: 0, lng: 0 });
@@ -14,12 +15,21 @@ function Map() {
       });
     });
   }, []);
+    delete L.Icon.Default.prototype._getIconUrl;
+    L.Icon.Default.mergeOptions({
+    iconUrl: require('./pngegg.png'),
+    iconRetinaUrl: require('./pngegg.png'),
+    iconSize: new L.Point(30, 50),
+    shadowUrl: null,
+    shadowSize: new L.point(30,50),
+    shadowAnchor: null,
+});
+
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} minZoom={3} scrollWheelZoom={true} style={{ height: '150vh'}}>
+    <MapContainer center={[location.lat,location.lng]} zoom={13} minZoom={3} scrollWheelZoom={true} style={{ height: '150vh'}}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker position={[location.lat, location.lng]}>
+      <Marker position={[location.lat,location.lng]}>
         <Popup>
-          <iconPerson/>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
