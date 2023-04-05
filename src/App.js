@@ -1,5 +1,7 @@
 import 'leaflet/dist/leaflet.css'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
+import {Routes, Route, useNavigate, Router} from 'react-router-dom';
+import Map from './pages/openmap';
 import './App.css';
 import Secpage from './pages/secpage';
 function App() {
@@ -22,6 +24,9 @@ function App() {
         <Secpage/>
       </ParallaxLayer>
     </Parallax>
+    <Routes>
+            <Route path='/map' element={<Map/>}/>
+    </Routes>
   </div>
 );
 }

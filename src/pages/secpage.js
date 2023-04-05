@@ -1,7 +1,12 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 export default function Secpage() {
+  const navigate = useNavigate();
+  const navigatetomap = () => {
+    navigate('/map');
+  };
   return (
+   
     <div class="animation_layer parallax" id="secpage">
       <div className='Test'>
         <a className='Heading'>Why us?</a>
@@ -10,7 +15,7 @@ export default function Secpage() {
         </div>
         <a className='tryhead'>Try now!</a>
         <div id='butdiv'>
-          <button className='button1'>Something</button>
+          <button className='button1' onClick={navigatetomap}>Something</button>
         </div>
         <div className='carddiv'>
           <div id='card1'></div>
@@ -18,5 +23,6 @@ export default function Secpage() {
         </div>
       </div>
     </div>
+    
   )
 }
