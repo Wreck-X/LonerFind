@@ -1,10 +1,10 @@
 .App {
+
 }
 
 .animation, .animation_layer {
 	height: 100%;
 	width: 100%;
-	
 }
 
 .animation {
@@ -119,3 +119,111 @@ background-color: #0c0d1f;
 	font-size: 25px;
 	margin-bottom: 10px;
 }
+
+.slide-panel {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	background: linear-gradient( rgba(152,218,247,1) 0%, rgba(91,161,192,1) 50%, rgba(16,92,126,1) 100%);
+	overflow: hidden;
+	transition: height 0.3s ease-out;
+	z-index: 999;
+	opacity: 84.4%;
+  }
+
+  .slide-panel.open {
+	height: 100vh;
+  }
+  
+  .panel-content {
+	padding: 20px;
+
+  }
+
+
+  .buttonsdiv 
+  {margin: 0 auto;
+	display: flex;
+	flex-direction: row;	
+	height: 200px;
+	width: 300px;
+	margin-top: 40rem;
+  }
+  #openclosebutton {	
+	background-image: url(./Images/openclosebutton.png);
+	height: 100px;
+	width: 100px;
+  }
+
+  #fibutton {
+	background-image: url(./Images/icon.png);
+	height: 100px;
+	width: 100px;
+	margin-top: 4rem;
+	margin-bottom: 10rem;
+  }
+
+  #sibutton {
+	background-image: url(./Images/icon.png);
+	height: 100px;
+	width: 100px;
+	margin-bottom: 1rem;
+  }
+
+  #tibutton {
+	background-image: url(./Images/icon.png);
+	height: 100px;
+	width: 100px;
+	margin-top: 4rem;
+	margin-bottom: 10rem;
+  }
+
+  .profile {	
+	transform: scale(1);
+	height: 5.2vw;
+	background-image: url(./Images/profile.png);
+	background-repeat: no-repeat;
+	width:5.3vw;
+	position: fixed;
+	z-index: 998;
+	top: 10px;
+	right: 10px;
+  }
+
+  .finderbar {
+	z-index: 998;
+	height: 15rem;
+	width: 3.5rem;
+	background-image: url(./Images/finderbar.png);
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+  }
+
+  .findersubbar {
+	background-color: #eeeef3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+	height: 12rem;
+	width: 1.5rem;
+  }
+
+  #item1{
+	flex: 33.3%;
+  }
+
+  #item2{
+	flex: 33.3%;
+  }
+
+  #item3{
+	flex: 33.3%;
+  }

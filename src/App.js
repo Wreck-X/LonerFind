@@ -8,7 +8,7 @@ import Landingpage from './pages/landingpage';
 function App() {
   return (
   <Routes>
-    <Route path = '/' element={<Landingpage/>}> </Route>
+    <Route path = '/' element={<Landingpage/>}/>
     <Route path='/map' element={<Map/>}/>
   </Routes>
 );

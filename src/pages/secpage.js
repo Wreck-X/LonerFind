@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 export default function Secpage() {
   const navigate = useNavigate();
   const navigatetomap = () => {
@@ -23,6 +23,5 @@ export default function Secpage() {
         </div>
       </div>
     </div>
-    
   )
 }
