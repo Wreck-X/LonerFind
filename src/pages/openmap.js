@@ -3,8 +3,6 @@ import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents} from 'react-leaflet';
 import React, {useEffect, useState} from "react";
 import L from 'leaflet';
-<<<<<<< HEAD
-=======
 import SlidePanel from './slidingpanel';
 import Panel   from './panel';
 
@@ -18,7 +16,6 @@ const LocationFinderDummy = () => {
 };
 
 
->>>>>>> 1f88076e (more additions to the frontend)
 function Map() {
     const [location, setLocation] = useState({ lat: 9.102308613438732, lng: 76.49512052536011 });
 
