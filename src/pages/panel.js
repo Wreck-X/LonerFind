@@ -8,15 +8,22 @@ export default function Panel() {
     <div className='profile'></div>
     <div className='finderbar'>
       <div className='findersubbar'> 
+      <div className='findersubsubbar'>
         <div id='item1'>
+          <div id='itemsub1'>
           <LunchDiningIcon/>
-
+          </div>
         </div>
         <div id='item2'>
-          <SportsTennisIcon/>
+          <div id='itemsub2'>
+            <SportsTennisIcon/>
+          </div>
         </div>
         <div id='item3'>
+          <div id='itemsub3'>
           <ShoppingCartIcon/>
+          </div>
+        </div>
       </div>
     </div>
     </div>
