@@ -2,6 +2,7 @@ import React from 'react'
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import SportsTennisIcon from '@mui/icons-material/SportsTennis';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Button from 'react-bootstrap/Button';
 export default function Panel() {
   return (
     <>

@@ -251,7 +251,7 @@ background-color: #0c0d1f;
 	background-color: #49add8;
   }
   #item3:hover {
-	background-color: #191B40;
+	background-color: #49add8;
   }
 
   .findersubsubbar{
@@ -274,3 +274,10 @@ background-color: #0c0d1f;
   #itemsub1{
 	margin: 0 auto;
   }
+
+  @media (max-width: 575.98px) {
+	.buttonsdiv {
+	  margin-bottom: 100;
+	}
+  }
+
