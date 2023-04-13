@@ -275,9 +275,54 @@ background-color: #0c0d1f;
 	margin: 0 auto;
   }
 
+
+  .Contextmenu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 996;
+	background-color: #384e7c;
+	width: 10rem;
+	height: 3rem;
+	border-radius: 10px;
+	color: white;
+  }
+
+  .Contextmenu:hover {
+	background-color: #191B40;
+  }
+  .menulist {
+	list-style-type: none;
+  }
   @media (max-width: 575.98px) {
 	.buttonsdiv {
 	  margin-bottom: 100;
 	}
   }
 
+.eventTitle{
+	display: flex;
+	font-size: 20px;
+	justify-content: center;
+}
+
+
+.eventButtonFlex{
+	display: flex;
+	justify-content: center;
+}
+.eventButton{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #98daf7;
+	height: 30px;
+	width: 70px;
+	border-radius: 20px;
+}
+
+.eventDescription {
+	font-size: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
