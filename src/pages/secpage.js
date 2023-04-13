@@ -9,11 +9,11 @@ export default function Secpage() {
    
     <div class="animation_layer parallax" id="secpage">
       <div className='Test'>
-        <a className='Heading'>Why us?</a>
+        <div className='Heading'>Why us?</div>
         <div className='para1'>
           <p id='paratext'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-        <a className='tryhead'>Try now!</a>
+        <div className='tryhead'>Try now!</div>
         <div id='butdiv'>
           <button className='button1' onClick={navigatetomap}>Something</button>
         </div>
