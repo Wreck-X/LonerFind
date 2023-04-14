@@ -9,6 +9,8 @@ import axios from 'axios';
 import { keys } from '@mui/system';
 
 let obj;
+let latt;
+let long;
 function Map() {
   const [location, setLocation] = useState({ lat: 9.102308613438732, lng: 76.49512052536011 });
   const [markerPosition  , setMarkerPositions] = useState({lat:0,lng:0})
@@ -29,38 +31,8 @@ function Map() {
       }
   };
 
-  function Markeronclick () {
-           useMapEvents({
-        click(e) {
-          console.log(e)
-          console.log(e.originalEvent.button)
-          if (e.originalEvent.button == 0 && e.originalEvent.ctrlKey == true) {
-            var postcontent = e.latlng
-            // setShowMenu(true);
-            // setMenuX(e.clientX);
-            // setMenuY(e.clientY);
-            setMarkerPositions(e.latlng)
-            console.log(postcontent)
-            const config = {
-              headers: {
-                lat:postcontent.lat,
-                long:postcontent.lng,
-              }
-            }
-            axios.post('https://django.biscuitbobby.me/eventupdate/',{},config).then(response =>  {
-              console.log(response.data)
-            })
-            .catch(error => {console.error(error)});
-          }
- 
-        },
-      });
-      return(
-      <>
-      <Marker  position={markerPosition} draggable={true}></Marker>
-      </>
-      )
-  }
+
+
   
   const loadMarkers = (e) => {
   axios.get('https://django.biscuitbobby.me/loc/')
@@ -93,12 +65,7 @@ function Map() {
     });
   },[]);
 
-  function handleContextmenu(e) {
-    e.preventDefault();
-    setShowMenu(true);
-    setMenuX(e.clientX);
-    setMenuY(e.clientY);
-  }
+
 
     delete L.Icon.Default.prototype._getIconUrl;
     L.Icon.Default.mergeOptions({
@@ -166,9 +133,56 @@ function Map() {
       setRecievedPositions(foodlist)
       }
     }
+
+    function Markeronclick () {
+          useMapEvents({
+      click(e) {
+        if (e.originalEvent.button == 0 && e.originalEvent.ctrlKey == true) {
+          var postcontent = e.latlng
+          
+          setMenuX(e.containerPoint.x);
+          setMenuY(e.containerPoint.y);
+          setShowMenu(true);
+          setMarkerPositions(e.latlng)
+          latt = postcontent.lat
+          long = postcontent.lng
+          }
+        },
+      });
+      return(
+      <>
+      <Marker  position={markerPosition} draggable={true}></Marker>
+      </>
+      )
+    }
+
+
+    function sendmarker(type) {
+      console.log(type)
+      const config = {
+        headers: {
+          lat:latt,
+          long:long,
+          type:type,
+        }
+      }
+      axios.post('https://django.biscuitbobby.me/eventupdate/',{},config).then(response =>  {
+        console.log(response.data)
+      })
+      .catch(error => {console.error(error)});
+      setShowMenu(false)
+      
+} 
   return (
-    <div onContextMenu={handleContextmenu}>
+    <div >
       {}
+      {showMenu && (
+        <div className="context-menu" style={{left: menuX,top: menuY}}>
+          <div class='context-menu-item' id ='food' onClick={() => sendmarker('food')}>Food</div>
+          <div class='context-menu-item' id ='sport' onClick={() => sendmarker('sport')}>Sports</div>
+          <div class='context-menu-item' id ='shopping' onClick={() => sendmarker('shopping')}> Shopping</div>
+        </div>
+      )}
     <SlidePanel handleClick={handleClick}/>
     <Panel filterfood={filterfood} filtershopping={filtershopping} filtersport={filtersport} filer/>
     <MapContainer style={{ height: "100vh", minHeight: "100%" }} center={[location.lat,location.lng]} zoom={13} minZoom={3} scrollWheelZoom={true} whenReady={loadMarkers}>

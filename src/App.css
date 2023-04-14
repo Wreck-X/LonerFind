@@ -276,21 +276,6 @@ background-color: #0c0d1f;
   }
 
 
-  .Contextmenu {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 996;
-	background-color: #384e7c;
-	width: 10rem;
-	height: 3rem;
-	border-radius: 10px;
-	color: white;
-  }
-
-  .Contextmenu:hover {
-	background-color: #191B40;
-  }
   .menulist {
 	list-style-type: none;
   }
@@ -325,4 +310,31 @@ background-color: #0c0d1f;
 	font-size: 15px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.context-menu{
+	position: fixed; /* Sit on top of the page content *//* Hidden by default */
+	width: 100px; /* Full width (cover the whole page) */
+	height: fit-content; /* Full height (cover the whole page) */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color: white;
+	background-color: rgba(45, 28, 75, 0.918); /* Black background with opacity */
+	z-index: 998; /* Specify a stack order in case you're using a different order for other elements */
+	cursor: pointer;
+	padding: 10px; /* Add a pointer on hover */
+	border-radius: 10px;
+}
+
+.context-menu-item{
+	display: flex;
+	justify-content: center;
+	padding: 2px;
+	align-items: center;
+	border-radius: 20px;
+}
+.context-menu-item:hover{
+	background-color: rgba(73, 47, 117, 0.918);
 }
