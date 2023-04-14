@@ -18,7 +18,7 @@ const SlidePanel = ({handleClick}) => {
         <div id='fibutton' onClick={handleButtonClick}></div>
         <div>
         <div id='sibutton' onClick={handleClick}></div>
-        <div id='openclosebutton' onClick={handleButtonClick}></div>
+        <div id='openclosebutton' onClick={togglePanel}></div>
         </div>
         <div id='tibutton' onClick={handleButtonClick}></div>
       </div>
