@@ -5,7 +5,7 @@ import Map from './pages/mainpages/map';
 import './App.css';
 
 import Landingpage from './pages/mainpages/landingpage';
-import Login from './pages/login';
+import Login from './pages/mainpages/login';
 function App() {
   return (
   <Routes>

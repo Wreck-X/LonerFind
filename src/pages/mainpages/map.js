@@ -6,14 +6,13 @@ import L from 'leaflet';
 import SlidePanel from '../slidingpanel';
 import Panel   from '../panel';
 import axios from 'axios';
-import { keys } from '@mui/system';
 
 let obj;
 let latt;
 let long;
 function Map() {
   const [location, setLocation] = useState({ lat: 9.102308613438732, lng: 76.49512052536011 });
-  const [markerPosition  , setMarkerPositions] = useState({lat:0,lng:0})
+  const [markerPosition  , setMarkerPositions] = useState({lat:1000,lng:1000})
   const [recievedPositions, setRecievedPositions] = useState([])
   const [booleanforcentermarker, setcentermarker] = useState(false)
   const [showMenu, setShowMenu] = useState(false);
@@ -106,7 +105,7 @@ function Map() {
     function filterfood() {
       var foodlist = []
       for (var i in obj) {
-        if (obj[i].tag == 'food') {
+        if (obj[i].tag === 'food') {
           foodlist.push(obj[i])
         }
       console.log('filetered')
@@ -116,7 +115,7 @@ function Map() {
     function filtershopping() {
       var foodlist = []
       for (var i in obj) {
-        if (obj[i].tag == 'shopping') {
+        if (obj[i].tag === 'shopping') {
           foodlist.push(obj[i])
         }
       console.log('filetered')
@@ -126,7 +125,7 @@ function Map() {
     function filtersport() {
       var foodlist = []
       for (var i in obj) {
-        if (obj[i].tag == 'sport') {
+        if (obj[i].tag === 'sport') {
           foodlist.push(obj[i])
         }
       console.log('filetered')
@@ -137,7 +136,8 @@ function Map() {
     function Markeronclick () {
           useMapEvents({
       click(e) {
-        if (e.originalEvent.button == 0 && e.originalEvent.ctrlKey == true) {
+        setShowMenu(false)
+        if (e.originalEvent.button === 0 && e.originalEvent.ctrlKey === true) {
           var postcontent = e.latlng
           
           setMenuX(e.containerPoint.x);
@@ -175,12 +175,25 @@ function Map() {
 } 
   return (
     <div >
-      {}
+    <div>Ctrl+left click to add an event</div>
       {showMenu && (
         <div className="context-menu" style={{left: menuX,top: menuY}}>
-          <div class='context-menu-item' id ='food' onClick={() => sendmarker('food')}>Food</div>
-          <div class='context-menu-item' id ='sport' onClick={() => sendmarker('sport')}>Sports</div>
-          <div class='context-menu-item' id ='shopping' onClick={() => sendmarker('shopping')}> Shopping</div>
+          <div className='context-menu-body'>
+            <div>
+              <label >Enter event name:</label>
+              <input  className='context-menu-input' placeholder='Event name'></input>
+              <label >Enter event details:</label>
+              <input  className='context-menu-input' placeholder='Event details'></input>
+            </div>
+            <div className='context-menubuttons'>
+              <div class='context-menu-item' id ='food' onClick={() => sendmarker('food')}>Food</div>
+              <div class='context-menu-item' id ='sport' onClick={() => sendmarker('sport')}>Sports</div>
+              <div class='context-menu-item' id ='shopping' onClick={() => sendmarker('shopping')}>Shopping</div>
+            </div>
+            <div className='buttonalign'>
+              <button onClick={null}>Set marker</button>
+            </div>
+          </div>
         </div>
       )}
     <SlidePanel handleClick={handleClick}/>

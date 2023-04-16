@@ -18,8 +18,13 @@ export default function Secpage() {
           <button className='button1' onClick={navigatetomap}>Something</button>
         </div>
         <div className='carddiv'>
-          <div id='card1'></div>
-          <div id='card2'></div>
+          <div id='card1'>
+            <div id='card1title'>BiscuitBobby</div>
+          </div>
+            
+          <div id='card2'>
+            <div id='card2title'>Wreck</div>
+          </div>
         </div>
       </div>
     </div>
