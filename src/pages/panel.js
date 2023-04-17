@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 export default function Panel({filterfood,filtershopping,filtersport}) {
   return (
     <>
+    <div className='profile'></div>
     <div className='finderbar'>
       <div className='findersubbar'> 
       <div className='findersubsubbar'>
