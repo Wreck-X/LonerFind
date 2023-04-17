@@ -198,17 +198,18 @@ background-color: #0c0d1f;
 	margin-bottom: 10rem;
   }
 
-  .profile {	
-	transform: scale(1);
-	height: 5.2vw;
-	background-image: url(./Images/profile.png);
-	background-repeat: no-repeat;
-	width:5.3vw;
-	position: fixed;
-	z-index: 998;
-	top: 10px;
-	right: 10px;
-  }
+  .profile {
+    transform: scale(1);
+    height: 100px;
+    background-image: url(./Images/profile.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100px;
+    position: fixed;
+    z-index: 998;
+    top: 10px;
+    right: 10px;
+}
 
   .finderbar {
 	z-index: 998;
