@@ -546,3 +546,22 @@ body{
 	align-items: center;
 	padding: 10px;
 }
+
+.okipullup {
+	display: flex;
+	background-image: url(./Images/pullup.png);	
+	position: fixed;
+	bottom: 0;
+	width: 74px;
+	height: 45px;
+	overflow: hidden;
+	z-index: 1000;
+	opacity: 84.4%;
+	background-repeat: no-repeat	;
+}
+
+.okipullupalign{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}

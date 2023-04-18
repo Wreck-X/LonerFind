@@ -20,8 +20,9 @@ function Map({token,username}) {
   const [menuY, setMenuY] = useState(0);
   const [eventdetails, seteventdetails] = useState(null);
   const [eventname,seteventname] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  function LocationFinderDummy ({handleClick}) {   
+  function LocationFinderDummy ({handleClick,togglePanel}) {   
       var map = useMap()
       var center = map.getCenter()
       if (booleanforcentermarker){
@@ -187,10 +188,17 @@ function Map({token,username}) {
       .catch(error => {console.error(error)});
       setShowMenu(false)  
       
+
 } 
+const togglePanel = () => {
+  setIsOpen(!isOpen);
+};
   return (
     <div >
     <div>Ctrl+left click to add an event</div>
+    <div className='okipullupalign' onClick={togglePanel}>
+      <div className='okipullup'></div>
+    </div>
       {showMenu && (
         <div className="context-menu" style={{left: menuX,top: menuY}}>
           <div className='context-menu-body'>
@@ -210,7 +218,7 @@ function Map({token,username}) {
           </div>
         </div>
       )}
-    <SlidePanel handleClick={handleClick}/>
+    <SlidePanel handleClick={handleClick} togglePanel={togglePanel} isOpen={isOpen}/>
     <Panel filterfood={filterfood} filtershopping={filtershopping} filtersport={filtersport} filer/>
     <MapContainer style={{ height: "100vh", minHeight: "100%" }} center={[location.lat,location.lng]} zoom={13} minZoom={3} scrollWheelZoom={true} whenReady={loadMarkers}>
 

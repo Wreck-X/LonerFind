@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { useMap } from 'react-leaflet';
 import Cookies from 'js-cookie';
 
-const SlidePanel = ({handleClick}) => {
-  const [isOpen, setIsOpen] = useState(false);
+const SlidePanel = ({handleClick,togglePanel,isOpen}) => {
+  
   const currentDate = new Date();
   const dateString = currentDate.toDateString();
-  const togglePanel = () => {
-    setIsOpen(!isOpen);
-  };
+
                                                                 
   const handleButtonClick = (e) => {
     e.stopPropagation();
