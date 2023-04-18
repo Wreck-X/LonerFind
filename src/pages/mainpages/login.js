@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
+import Cookies from 'js-cookie';
 
 
-
-export default function Login({setToken,setUsername}) {
+export default function Login({setToken}) {
     const navigate = useNavigate();
     const [username, setUsername_] = useState('')
     const [password, setPassword] = useState('');
@@ -12,14 +12,14 @@ export default function Login({setToken,setUsername}) {
     const handleSubmit = (e) => {
        
         e.preventDefault();
-        setUsername(username);
+        Cookies.set('username',username)
         axios
             .post("https:django.biscuitbobby.me/auth/", {
                 username: username,
                 password : password,
             })
             .then((res) => {
-                setToken(res.data['token'])
+                Cookies.set('token',res.data['token'])
                 this.setState({
                     username: "",
                     password: "",

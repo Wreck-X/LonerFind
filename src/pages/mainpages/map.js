@@ -6,7 +6,7 @@ import L from 'leaflet';
 import SlidePanel from '../slidingpanel';
 import Panel   from '../panel';
 import axios from 'axios';
-
+import Cookies from 'js-cookie';
 let obj;
 let latt;
 let long;
@@ -172,13 +172,13 @@ function Map({token,username}) {
       console.log(type)
       const config = {
         headers: {
-          username: username,
+          username: Cookies.get('username'),
           lat:latt,
           long:long,
           type:type,
           eventdetails:eventdetails,
           eventname:eventname,
-          token:token,
+          token:Cookies.get('token'),
         }
       }
       axios.post('https://django.biscuitbobby.me/eventupdate/',{},config).then(response =>  {
