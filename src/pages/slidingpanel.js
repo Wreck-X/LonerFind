@@ -15,7 +15,6 @@ const SlidePanel = ({handleClick}) => {
     <>
     
     <div className={`slide-panel ${isOpen ? 'open' : ''}`} onClick={togglePanel}>
-      <div className='pullup'>dsdasdad</div>
       <div className="panel-content">
       <div className='Profile-card-panel'></div>
       <div className='buttonsdiv'>
