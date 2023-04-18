@@ -17,11 +17,12 @@ export default function Login({setToken}) {
         Cookies.set('username',username)
         axios
             .post("https:django.biscuitbobby.me/auth/", {
-                withCredentials: true,
+                
                 username: username,
                 password : password,
             })
             .then((res) => {
+                console.log(res.data['token'],"hell")
                 Cookies.set('token',res.data['token'])
                 this.setState({
                     username: "",

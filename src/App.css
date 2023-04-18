@@ -375,6 +375,8 @@ background-color: #0c0d1f;
 }
 
 .Profile-card-panel {
+	display: flex;
+	flex-direction: row;
 	height: 13rem;
 	width: 25rem;
 	background-color: white;
@@ -517,6 +519,30 @@ body{
     height: 32rem;
   }
 }
-.inputpwd{
+.usernameincard{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px;
+	height: 100%;
+	width: 80%
+}
+
+.Profileincard {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: scale(1);
+    height: 100px;
+    background-image: url(./Images/profile.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+	width: 100px;
 	
+}
+
+.alignprofilecard{
+	display: flex;
+	align-items: center;
+	padding: 10px;
 }
