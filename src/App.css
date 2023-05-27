@@ -24,18 +24,18 @@ background-color: #0c0d1f;
 }
 
 #back {
-	background-image: url(./Images/back.png);
+	background-image: url(./assets/back.png);
 
   }
 #three{
-  background-image: url('./Images/3rdlayer.png');
+  background-image: url(./assets/3rdlayer.png);
 }
 #two{
-  background-image: url('./Images/2ndlayer.png');
+  background-image: url(./assets/2ndlayer.png);
 }
 #one {
 
-  background-image: url('./Images/1stlayer.png');
+  background-image: url(./assets/1stlayer.png);
 }
 
 #secpage {
@@ -170,13 +170,13 @@ background-color: #0c0d1f;
 
 
   #openclosebutton {	
-	background-image: url(./Images/openclosebutton.png);
+	background-image: url(./assets/openclosebutton.png);
 	height: 100px;
 	width: 100px;
   }
 
   #fibutton {
-	background-image: url(./Images/icon.png);
+	background-image: url(./assets/icon.png);
 	height: 100px;
 	width: 100px;
 	margin-top: 4rem;
@@ -184,14 +184,14 @@ background-color: #0c0d1f;
   }
 
   #sibutton {
-	background-image: url(./Images/icon.png);
+	background-image: url(./assets/icon.png);
 	height: 100px;
 	width: 100px;
 	margin-bottom: 1rem;
   }
 
   #tibutton {
-	background-image: url(./Images/icon.png);
+	background-image: url(./assets/icon.png);
 	height: 100px;
 	width: 100px;
 	margin-top: 4rem;
@@ -201,7 +201,7 @@ background-color: #0c0d1f;
   .profile {
     transform: scale(1);
     height: 100px;
-    background-image: url(./Images/profile.png);
+    background-image: url(./assets/profile.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 100px;
@@ -215,7 +215,7 @@ background-color: #0c0d1f;
 	z-index: 998;
 	height: 15rem;
 	width: 3.5rem;
-	background-image: url(./Images/finderbar.png);
+	background-image: url(./assets/finderbar.png);
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
@@ -534,7 +534,7 @@ body{
 	align-items: center;
 	transform: scale(1);
     height: 100px;
-    background-image: url(./Images/profile.png);
+    background-image: url(./assets/profile.png);
     background-repeat: no-repeat;
     background-size: contain;
 	width: 100px;
@@ -549,7 +549,7 @@ body{
 
 .okipullup {
 	display: flex;
-	background-image: url(./Images/pullup.png);	
+	background-image: url(./assets/pullup.png);	
 	position: fixed;
 	bottom: 0;
 	width: 74px;
