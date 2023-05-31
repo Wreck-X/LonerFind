@@ -1,15 +1,17 @@
 
 import 'leaflet/dist/leaflet.css'
-import { MapContainer, TileLayer, Marker, Popup ,useMapEvents, useMap} from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup ,useMapEvents} from 'react-leaflet';
 import React, {useEffect, useState} from "react";
 import L from 'leaflet';
 import SlidePanel from '../components/slidingpanel';
 import Panel   from '../components/panel';
+import { filterfood,filtershopping,filtersport } from '../services/filters/filters';
 import { Foodicon,Sporticon,Shoppingicon } from '../icons';
-import { fetchMapData  } from '../services/loadmarkers';
-import { sendmarker } from '../services/sendmarker';
-let obj;
+import { fetchMapData  } from '../services/api/loadmarkers';
+import { sendmarker } from '../services/api/sendmarker';
+import LocationFinderDummy from '../components/locationfinderdummy';
 function Map({token,username}) {
+
   const [location, setLocation] = useState({ lat: 9.102308613438732, lng: 76.49512052536011 });
   const [markerPosition  , setMarkerPositions] = useState({lat:1000,lng:1000})
   const [recievedPositions, setRecievedPositions] = useState([])
@@ -24,13 +26,14 @@ function Map({token,username}) {
   const [lat,setlat] = useState();
   const [long,setlong] = useState();
   const [data,setdata] = useState()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchMapData();
         setdata(data);
         setRecievedPositions(data);
-        console.log(recievedPositions);
+
       } catch (error) {
         console.error(error);
       }
@@ -39,17 +42,16 @@ function Map({token,username}) {
     fetchData();
   }, []);
 
-  function LocationFinderDummy ({handleClick,togglePanel}) {   
-      var map = useMap()
-      var center = map.getCenter()
-      if (booleanforcentermarker){
-      return (
-        <>
-            <Marker position={center} draggable={true}/>
-        </>
-      );
-      }
-  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  },[]);
+
   
   const handleChangname = event => {
     seteventname(event.target.value);
@@ -69,14 +71,6 @@ function Map({token,username}) {
     setcentermarker(true)
   }
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLocation({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
-    });
-  },[]);
 
 
 
@@ -90,36 +84,7 @@ function Map({token,username}) {
     shadowAnchor: null,
     });
 
-    function filterfood() {
-      var foodlist = []
-      for (var i in data) {
-        if (data[i].tag === 'food') {
-          foodlist.push(data[i])
-        }
-      console.log('filetered')
-      setRecievedPositions(foodlist)
-      }
-    }
-    function filtershopping() {
-      var foodlist = []
-      for (var i in data) {
-        if (data[i].tag === 'shopping') {
-          foodlist.push(data[i])
-        }
-      console.log('filetered')
-      setRecievedPositions(foodlist)
-      }
-    }
-    function filtersport() {
-      var foodlist = []
-      for (var i in data) {
-        if (data[i].tag === 'sport') {
-          foodlist.push(data[i])
-        }
-      console.log('filetered')
-      setRecievedPositions(foodlist)
-      }
-    }
+
 
     function Markeronclick () {
           useMapEvents({
@@ -175,11 +140,11 @@ const togglePanel = () => {
         </div>
       )}
     <SlidePanel handleClick={handleClick} togglePanel={togglePanel} isOpen={isOpen} isShown={isShown}/>
-    <Panel filterfood={filterfood} filtershopping={filtershopping} filtersport={filtersport} filer/>
+    {data &&
+    <Panel filterfood={() => {setRecievedPositions(filterfood(data))}} filtershopping={() => {setRecievedPositions(filtersport(data))}} filtersport={() => {setRecievedPositions(filtershopping(data))}} filer/>}
     <MapContainer style={{ height: "100vh", minHeight: "100%" }} center={[location.lat,location.lng]} zoom={13} minZoom={3} scrollWheelZoom={true}>
 
     {Object.keys(recievedPositions).map((keys,index) => {
-      console.log(recievedPositions[keys].tag)
       switch(recievedPositions[keys].tag){
         case ('food'):
       return (
@@ -231,7 +196,7 @@ const togglePanel = () => {
   }
     )}
       <Markeronclick/>
-      <LocationFinderDummy/>
+      <LocationFinderDummy booleanforcentermarker={booleanforcentermarker}/>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
     </MapContainer> 
     </div>

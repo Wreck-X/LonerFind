@@ -12,8 +12,7 @@ export default function Login({setToken}) {
     const handleSubmit = (e) => {
        
         e.preventDefault();
-        console.log(username)
-        console.log(password)
+
         Cookies.set('username',username)
         axios
             .post("https:django.biscuitbobby.me/auth/", {

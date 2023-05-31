@@ -5,7 +5,7 @@ const BASE_URL = 'https://django.biscuitbobby.me/loc/';
 const apiService = axios.create({
   baseURL: BASE_URL,
   headers: {
-    
+    'Radius':'100',
     'Content-Type': 'application/json',
   },
 });
