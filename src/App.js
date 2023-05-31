@@ -1,10 +1,10 @@
 import 'leaflet/dist/leaflet.css'
 import React, {useState} from 'react'
 import {Routes, Route} from 'react-router-dom';
-import Map from './Pages/map';
+import Map from './pages/map';
 import './App.css';
-import Landingpage from './Pages/landingpage';
-import Login from './Pages/login';
+import Landingpage from './pages/landingpage';
+import Login from './pages/login';
 function App() {
   const [token,setToken] = useState(null)
   const [username, setUsername] = useState('');
