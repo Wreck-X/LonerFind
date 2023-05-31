@@ -23,11 +23,12 @@ function Map({token,username}) {
   const [isShown,setisShown] = useState(false);
   const [lat,setlat] = useState();
   const [long,setlong] = useState();
-
+  const [data,setdata] = useState()
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchMapData();
+        setdata(data);
         setRecievedPositions(data);
         console.log(recievedPositions);
       } catch (error) {
@@ -116,9 +117,9 @@ function Map({token,username}) {
     });
     function filterfood() {
       var foodlist = []
-      for (var i in obj) {
-        if (obj[i].tag === 'food') {
-          foodlist.push(obj[i])
+      for (var i in data) {
+        if (data[i].tag === 'food') {
+          foodlist.push(data[i])
         }
       console.log('filetered')
       setRecievedPositions(foodlist)
@@ -126,9 +127,9 @@ function Map({token,username}) {
     }
     function filtershopping() {
       var foodlist = []
-      for (var i in obj) {
-        if (obj[i].tag === 'shopping') {
-          foodlist.push(obj[i])
+      for (var i in data) {
+        if (data[i].tag === 'shopping') {
+          foodlist.push(data[i])
         }
       console.log('filetered')
       setRecievedPositions(foodlist)
@@ -136,9 +137,9 @@ function Map({token,username}) {
     }
     function filtersport() {
       var foodlist = []
-      for (var i in obj) {
-        if (obj[i].tag === 'sport') {
-          foodlist.push(obj[i])
+      for (var i in data) {
+        if (data[i].tag === 'sport') {
+          foodlist.push(data[i])
         }
       console.log('filetered')
       setRecievedPositions(foodlist)
