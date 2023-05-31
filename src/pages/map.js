@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import L from 'leaflet';
 import SlidePanel from '../components/slidingpanel';
 import Panel   from '../components/panel';
-
+import { Foodicon,Sporticon,Shoppingicon } from '../icons';
 import { fetchMapData  } from '../services/loadmarkers';
 import { sendmarker } from '../services/sendmarker';
 let obj;
@@ -50,6 +50,7 @@ function Map({token,username}) {
       );
       }
   };
+  
   const handleChangname = event => {
     seteventname(event.target.value);
 
@@ -89,32 +90,6 @@ function Map({token,username}) {
     shadowAnchor: null,
     });
 
-    const Foodicon = new L.icon({
-      iconUrl: require('../assets/lightblue.png'),
-      iconRetinaUrl: require('../assets/lightblue.png'),
-      iconSize: new L.Point(30,70),
-      shadowUrl: null,
-      shadowSize: new L.point(30,50),
-      shadowAnchor: null,
-    });
-
-    const Shoppingicon = new L.icon({
-      iconUrl: require('../assets/orange.png'),
-      iconRetinaUrl: require('../assets/orange.png'),
-      iconSize: new L.Point(30,70),
-      shadowUrl: null,
-      shadowSize: new L.point(30,50),
-      shadowAnchor: null,
-    });
-    
-    const Sporticon = new L.icon({
-      iconUrl: require('../assets/blue.png'),
-      iconRetinaUrl: require('../assets/blue.png'),
-      iconSize: new L.Point(30,70),
-      shadowUrl: null,
-      shadowSize: new L.point(30,50),
-      shadowAnchor: null,
-    });
     function filterfood() {
       var foodlist = []
       for (var i in data) {
