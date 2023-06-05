@@ -12,13 +12,10 @@ const apiService = axios.create({
 
 export const fetchMapData = async () => {
   try {
-    let mapData;
     const response = await apiService.get();
-    console.log(response.data)
-    mapData = JSON.parse(response.data)
-    return mapData;
+    return response;
   } catch (error) {
-    throw new Error('Failed to fetch map data');
+    console.log(error)
   }
 };
 

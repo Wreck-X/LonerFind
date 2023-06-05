@@ -1,9 +1,11 @@
 import React from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { useNavigate } from 'react-router-dom';
-
+import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 export default function Landingpage() {
+
   return (
     <div>
     <Parallax pages={2} style={{ top: '0', left: '0' }} class="animation">
@@ -33,7 +35,7 @@ function Extension() {
   };
   return (
    
-    <div class="animation_layer parallax" id="secpage">
+    <div className="animation_layer parallax" id="secpage">
       <div className='Test'>
         <div className='Heading'>Why us?</div>
         <div className='para1'>

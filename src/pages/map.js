@@ -10,7 +10,17 @@ import { Foodicon,Sporticon,Shoppingicon } from '../icons';
 import { fetchMapData  } from '../services/api/loadmarkers';
 import { sendmarker } from '../services/api/sendmarker';
 import LocationFinderDummy from '../components/locationfinderdummy';
+import Cookies from 'js-cookie';
 function Map({token,username}) {
+
+  useEffect(() => {
+    console.log(Cookies.get('token'))
+    if(Cookies.get('token') === undefined){
+      console.log('lolna')
+      window.location.href= '/login'
+    }
+      }, []);
+
 
   const [location, setLocation] = useState({ lat: 9.102308613438732, lng: 76.49512052536011 });
   const [markerPosition  , setMarkerPositions] = useState({lat:1000,lng:1000})
@@ -31,8 +41,8 @@ function Map({token,username}) {
     const fetchData = async () => {
       try {
         const data = await fetchMapData();
-        setdata(data);
-        setRecievedPositions(data);
+        setdata(data['data']);
+        setRecievedPositions(data['data']);
 
       } catch (error) {
         console.error(error);
@@ -55,13 +65,9 @@ function Map({token,username}) {
   
   const handleChangname = event => {
     seteventname(event.target.value);
-
-    console.log('value is:', event.target.value);
   };
   const handleChangedetail = event => {
     seteventdetails(event.target.value);
-
-    console.log('value is:', event.target.value);
   };
   
   
