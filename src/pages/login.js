@@ -49,6 +49,9 @@ export default function Login({setToken}) {
                         <div className='buttonalign'>
                             <button className='loginbutton' onClick={handleSubmit}>Login</button>
                         </div>
+                        <div>
+                            <a  class = "not-reg" href = '/registration'> Not registered?</a>
+                        </div>
                     </form>
                 </div>
             </div>

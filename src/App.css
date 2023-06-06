@@ -148,18 +148,7 @@ background-color: #0c0d1f;
 	margin-bottom: 10px;
 }
 
-.slide-panel {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 10px;
-	background: linear-gradient( rgba(152,218,247,1) 0%, rgba(91,161,192,1) 50%, rgba(16,92,126,1) 100%);
-	overflow: hidden;
-	transition: height 0.3s ease-out;
-	z-index: 999;
-	opacity: 84.4%;
-  }
+
 
   .slide-panel.open {
 	height: 100vh;
@@ -198,18 +187,6 @@ background-color: #0c0d1f;
 	margin-bottom: 10rem;
   }
 
-  .profile {
-    transform: scale(1);
-    height: 100px;
-    background-image: url(./assets/profile.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 100px;
-    position: fixed;
-    z-index: 998;
-    top: 10px;
-    right: 10px;
-}
 
   .finderbar {
 	z-index: 998;
@@ -529,18 +506,7 @@ body{
 	width: 80%
 }
 
-.Profileincard {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transform: scale(1);
-    height: 100px;
-    background-image: url(./assets/profile.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-	width: 100px;
-	
-}
+
 
 .alignprofilecard{
 	display: flex;
@@ -580,7 +546,7 @@ body{
 	background-color: #384e7c;
 	color: white;
 	border-radius: 20px;
-	height: 25.5rem;
+	height: 22rem;
 	width: 25rem;
 }
 
@@ -596,9 +562,8 @@ body{
 
 .input2{
 	width: 330px;  
-	height: 2em;
-	font-size: 20px;
-	border-radius: 10px;
+	height: 40px;
+	border-radius: 15px;
 }
 .input-fields {
 	text-align: center;
@@ -621,3 +586,88 @@ body{
 	height: 40px;
 	width: 300px;
 }
+
+.center-title{
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	font-weight: 400;
+	font-size: 30px;
+	margin-bottom: 50px;
+}
+
+.event-title{
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	
+}
+
+.event-profile-card{
+	color: white;
+	background-color: #365cad;
+	opacity: 1;
+	margin-top: 2rem;
+	width: 30rem;
+	border-radius: 20px;
+	height: 8rem
+}
+
+.not-reg{
+	display: flex;
+	justify-content: end;
+	margin-right: 30px;
+	color: white;
+	margin-top: 10px;
+}
+.event-body{
+	
+	margin: 20px;
+	margin-top: 0;
+}
+
+.profile-body{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5rem;
+}
+
+.slide-panel {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	background: rgb(52, 149, 190) ;
+	overflow: hidden;
+	transition: height 0.3s ease-out;
+	z-index: 999;
+  }
+
+  .profile-image{
+	background-image: url(./assets/Profile.png);
+	height: 150px;
+	background-size: 150px;
+	background-repeat: no-repeat;
+	background-position: center;
+  }
+  .center{
+	display: flex;
+	width: 100vw;
+	justify-content: center;
+	
+  }
+  .align-dets{
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 25px;
+  }

@@ -160,7 +160,8 @@ const togglePanel = () => {
               <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
               <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
               <div className='eventButtonFlex'>
-                <div className='eventButton'>View</div>
+              <div className='eventButton'>Update</div>
+              <div className='eventButton'>Delete</div>
               </div>
             </div>
           </Popup>
@@ -174,7 +175,8 @@ const togglePanel = () => {
             <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
             <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
             <div className='eventButtonFlex'>
-              <div className='eventButton'>View</div>
+            <div className='eventButton'>Update</div>
+            <div className='eventButton'>Delete</div>
             </div>
           </div>
         </Popup>
@@ -188,7 +190,10 @@ const togglePanel = () => {
             <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
             <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
             <div className='eventButtonFlex'>
-              <div className='eventButton'>View</div>
+              <div className='eventButton'>Update</div>
+              <div className='eventButton'>Delete</div>
+
+
             </div>
           </div>
         </Popup>
