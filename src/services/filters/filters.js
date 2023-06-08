@@ -29,3 +29,12 @@ export function filtersport(data) {
     }
     return foodlist
   }
+
+  export function filterall(data) {
+    var foodlist = []
+    for (var i in data) {
+      foodlist.push(data[i])
+    }
+    console.log('filetered')
+    return foodlist
+  }

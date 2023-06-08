@@ -31,7 +31,7 @@ export default function Login({setToken}) {
             },
            
             )
-            .catch((err) => {});//dispklay login failed
+            .catch((err) => {});//display login failed
     };
     
 
@@ -47,7 +47,7 @@ export default function Login({setToken}) {
                             <div><input className='input1' placeholder='Password' type='password' onChange={e => setPassword(e.target.value)} required></input></div>
                         </div>
                         <div className='buttonalign'>
-                            <button className='loginbutton' onClick={handleSubmit}>Login</button>
+                            <button className='loginbutton' onClick={handleSubmit   }>Login</button>
                         </div>
                         <div>
                             <a  class = "not-reg" href = '/registration'> Not registered?</a>

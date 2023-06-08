@@ -37,7 +37,7 @@ const SlidePanel = ({handleClick,togglePanel,isOpen}) => {
       </div>
       <div className='profile-body'>
       <div className='event-profile-card'>
-        <div className='event-title'>Your Event</div>
+        <div className='event-title'>Active Event</div>
         <div className ='event-body'>
           <div>Running Since - </div>
           <div>Type - </div>

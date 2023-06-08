@@ -5,21 +5,23 @@ import React, {useEffect, useState} from "react";
 import L from 'leaflet';
 import SlidePanel from '../components/slidingpanel';
 import Panel   from '../components/panel';
-import { filterfood,filtershopping,filtersport } from '../services/filters/filters';
+import { filterall, filterfood,filtershopping,filtersport } from '../services/filters/filters';
 import { Foodicon,Sporticon,Shoppingicon } from '../icons';
 import { fetchMapData  } from '../services/api/loadmarkers';
 import { sendmarker } from '../services/api/sendmarker';
 import LocationFinderDummy from '../components/locationfinderdummy';
 import Cookies from 'js-cookie';
+import { deletemarker } from '../services/api/deletemarker';
+import { joinevent } from '../services/api/join';
 function Map({token,username}) {
 
-  useEffect(() => {
-    console.log(Cookies.get('token'))
-    if(Cookies.get('token') === undefined){
-      console.log('lolna')
-      window.location.href= '/login'
-    }
-      }, []);
+  // useEffect(() => {
+  //   console.log(Cookies.get('token'))
+  //   if(Cookies.get('token') === undefined){
+  //     console.log('lolna')
+  //     window.location.href= '/login'
+  //   }
+  //     }, []);
 
 
   const [location, setLocation] = useState({ lat: 9.102308613438732, lng: 76.49512052536011 });
@@ -35,23 +37,31 @@ function Map({token,username}) {
   const [isShown,setisShown] = useState(false);
   const [lat,setlat] = useState();
   const [long,setlong] = useState();
-  const [data,setdata] = useState()
+  const [data,setdata] = useState();
+  const [showmarker,setmarker] = useState(true);;
+  const [eventtitle,seteventtitle] = useState('');
 
+  const [markerLocation, setMarkerLocation] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchMapData();
         setdata(data['data']);
         setRecievedPositions(data['data']);
-
+        console.log(data['data'])
       } catch (error) {
         console.error(error);
       }
     };
 
+
     fetchData();
   }, []);
-
+  useEffect(() => {
+    if (!showmarker) {
+      deletemarker(1,1,'food', eventdetails, eventname)
+    }
+  }, [showmarker]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -76,8 +86,11 @@ function Map({token,username}) {
     e.stopPropagation()
     setcentermarker(true)
   }
-
-
+  const handlePopupButtonClick = (latitude, longitude) => {
+    const locationString = `Latitude: ${latitude}, Longitude: ${longitude}`;
+    // Use the locationString as needed (e.g., copy to clipboard, share, etc.)
+    console.log('Location:', locationString);
+  };
 
 
     delete L.Icon.Default.prototype._getIconUrl;
@@ -95,6 +108,7 @@ function Map({token,username}) {
     function Markeronclick () {
           useMapEvents({
       click(e) {
+        console.log(e)
         setShowMenu(false)
         if (e.originalEvent.button === 0 && e.originalEvent.ctrlKey === true) {
           var postcontent = e.latlng
@@ -108,6 +122,7 @@ function Map({token,username}) {
           }
         },
       });
+      
       return(
       <>
       <Marker  position={markerPosition} draggable={true}></Marker>
@@ -116,17 +131,21 @@ function Map({token,username}) {
     }
 
 
+
+
 const togglePanel = () => {
   setIsOpen(!isOpen);
   setisShown(!isShown);
 };
+
   return (
-    <div >
+    <div>
     <div>Ctrl+left click to add an event</div>
     <div className='okipullupalign' onClick={togglePanel}>
       <div className='okipullup'></div>
     </div>
       {showMenu && (
+        <div className='align-context-menu'> 
         <div className="context-menu" style={{left: menuX,top: menuY}}>
           <div className='context-menu-body'>
             <div>
@@ -144,61 +163,149 @@ const togglePanel = () => {
             </div>
           </div>
         </div>
+        </div>
+
       )}
     <SlidePanel handleClick={handleClick} togglePanel={togglePanel} isOpen={isOpen} isShown={isShown}/>
     {data &&
-    <Panel filterfood={() => {setRecievedPositions(filterfood(data))}} filtershopping={() => {setRecievedPositions(filtersport(data))}} filtersport={() => {setRecievedPositions(filtershopping(data))}} filer/>}
+    <Panel filterfood={() => {setRecievedPositions(filterfood(data))}} filtershopping={() => {setRecievedPositions(filtersport(data))}} filtersport={() => {setRecievedPositions(filtershopping(data))}} filterall={() => {setRecievedPositions(filterall(data))}}filer/>}
     <MapContainer style={{ height: "100vh", minHeight: "100%" }} center={[location.lat,location.lng]} zoom={13} minZoom={3} scrollWheelZoom={true}>
-
-    {Object.keys(recievedPositions).map((keys,index) => {
-      switch(recievedPositions[keys].tag){
-        case ('food'):
-      return (
-        <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Foodicon}>
+    <Marker position={[0,0]} icon={Foodicon}>
           <Popup>
             <div>
-              <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
-              <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+              <div className='eventTitle'>Party</div>
+              <div className='eventDescription' >"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
               <div className='eventButtonFlex'>
-              <div className='eventButton'>Update</div>
               <div className='eventButton'>Delete</div>
+              <div className='eventButton' onClick={handlePopupButtonClick(0,0)}>Share</div>
+              <div className='textevent'>0/10</div>
               </div>
             </div>
           </Popup>
         </Marker>
-      )
+    {Object.keys(recievedPositions).map((keys,index) => {
+      
+      switch(recievedPositions[keys].tag){
+        case ('food'):
+          if (Cookies.get('username') == keys) {
+            return (
+            <>
+            {showmarker && 
+            <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Foodicon}>
+                <Popup>
+                  <div>
+                    <div className='eventTitle' >{recievedPositions[keys].event_name}</div>
+                    <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+                    <div className='eventButtonFlex'>
+                    <div className='eventButton' onClick={()  => {setmarker(false)}}>Delete</div>
+                    <div className='eventButton'onClick={() => {navigator.clipboard.writeText(`Latitude: ${recievedPositions[keys].lat}, Longitude: ${recievedPositions[keys].lng}`)}}>Share</div>
+                    <div>0/10</div>
+                    </div>
+                  </div>
+                </Popup>
+              </Marker>}
+
+            </>
+
+            )
+          } else {
+            console.log(keys)
+            return (
+        
+              <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Foodicon}>
+                <Popup>
+                  <div>
+                    <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
+                    <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+                    <div className='eventButtonFlex'>
+                    <div className='eventButton' onClick={() => {joinevent(keys)}}>Join</div>
+                    <div>0/10</div>
+                    </div>
+                  </div>
+                </Popup>
+              </Marker>
+            )
+          }
+
       case('shopping'):
-      return (
-        <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Shoppingicon}>
-        <Popup>
-          <div>
-            <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
-            <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
-            <div className='eventButtonFlex'>
-            <div className='eventButton'>Update</div>
-            <div className='eventButton'>Delete</div>
-            </div>
-          </div>
-        </Popup>
-      </Marker>
-      )
+      if (Cookies.get('username') == keys) {
+        return (
+    
+          <>
+          {showmarker && 
+          <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Shoppingicon}>
+              <Popup>
+                <div>
+                  <div className='eventTitle' >{recievedPositions[keys].event_name}</div>
+                  <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+                  <div className='eventButtonFlex'>
+                  <div className='eventButton' onClick={()  => {setmarker(false)}}>Delete</div>
+                  <div className='eventButton'onClick={() => {navigator.clipboard.writeText(`Latitude: ${recievedPositions[keys].lat}, Longitude: ${recievedPositions[keys].lng}`)}}>Share</div>
+                  <div>0/10</div>
+                  </div>
+                </div>
+              </Popup>
+            </Marker>}
+
+          </>
+        )
+      } else {
+        return (
+    
+          <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Shoppingicon}>
+            <Popup>
+              <div>
+                <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
+                <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+                <div className='eventButtonFlex'>
+                <div className='eventButton'>Join</div>
+                <div>0/10</div>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        )
+      }
       case('sport'):
-      return(
-        <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Sporticon}>
-        <Popup>
-          <div>
-            <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
-            <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
-            <div className='eventButtonFlex'>
-              <div className='eventButton'>Update</div>
-              <div className='eventButton'>Delete</div>
+      if (Cookies.get('username') == keys) {
+        
+        return (
+    
+          <>
+          {showmarker && 
+          <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Sporticon}>
+              <Popup>
+                <div>
+                  <div className='eventTitle' >{recievedPositions[keys].event_name}</div>
+                  <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+                  <div className='eventButtonFlex'>
+                  <div className='eventButton' onClick={()  => {setmarker(false)}}>Delete</div>
+                  <div className='eventButton'onClick={() => {navigator.clipboard.writeText(`Latitude: ${recievedPositions[keys].lat}, Longitude: ${recievedPositions[keys].lng}`)}}>Share</div>
+                  <div>0/10</div>
+                  </div>
+                </div>
+              </Popup>
+            </Marker>}
 
-
-            </div>
-          </div>
-        </Popup>
-      </Marker>
-      )
+          </>
+        )
+      } else {
+        return (
+    
+          <Marker key={index} position={[recievedPositions[keys].lat,recievedPositions[keys].lng]} icon={Sporticon}>
+            <Popup>
+              <div>
+                <div className='eventTitle'>{recievedPositions[keys].event_name}</div>
+                <div className='eventDescription'>{recievedPositions[keys].event_description}</div>
+                <div className='eventButtonFlex'>
+                <div className='eventButton'>Join</div>
+                <div>0/10</div>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        )
+      }
       default:
         return(
           <></>
